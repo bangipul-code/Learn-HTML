@@ -146,7 +146,7 @@ fun MainScreen() {
             modifier = Modifier.padding(paddingValues)
         ) {
             composable(route = Screen.Home.route) { HomeScreen(userName = "Fauzi", userAvatar = "🍕", navController = navController) }
-            composable(route = Screen.Materi.route) { MateriScreen() }
+            composable(route = Screen.Materi.route) { MateriBelajar() }
             composable(route = Screen.Praktik.route) { PraktikScreen() }
             composable(route = Screen.Latihan.route) { LatihanScreen() }
             composable(route = Screen.Profil.route) { ProfilScreen() }
