@@ -27,7 +27,7 @@ import androidx.navigation.NavHostController
 @Composable
 fun HomeScreen(
     userName: String = "Fauzi Taufiq",
-    userAvatar: String = "👨‍💻",
+    userAvatar: String = "🍕",
     navController: NavHostController
 ) {
     var selectedTab by remember { mutableStateOf(0) }
