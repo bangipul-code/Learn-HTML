@@ -26,7 +26,7 @@ import androidx.navigation.NavHostController
 
 @Composable
 fun HomeScreen(
-    userName: String = "Pengguna",
+    userName: String = "Fauzi Taufiq",
     userAvatar: String = "👨‍💻",
     navController: NavHostController
 ) {
