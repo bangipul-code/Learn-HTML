@@ -124,7 +124,7 @@ fun HeaderSection(
             ) {
                 Column {
                     Text(
-                        text = "Selamat pagi,",
+                        text = "Selamat siang",
                         fontSize = 14.sp,
                         color = Color.White.copy(alpha = 0.7f)
                     )
