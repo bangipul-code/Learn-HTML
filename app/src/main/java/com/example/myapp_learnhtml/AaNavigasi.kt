@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Assignment
+import androidx.compose.material.icons.automirrored.filled.Assignment
 import androidx.compose.material.icons.filled.Book
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.LaptopChromebook
@@ -16,6 +16,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -26,6 +29,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.myapp_learnhtml.ui.screens.HomeScreen
+
+private const val ONBOARDING_ROUTE = "onboarding"
 
 // === DEKLARASI RUTE === \\
 sealed class Screen(
@@ -47,7 +52,7 @@ sealed class Screen(
 
     object Praktik : Screen(
         title = "Praktik",
-        icon = Icons.Default.Assignment,
+        icon = Icons.AutoMirrored.Filled.Assignment,
         route = "praktik"
     )
 
@@ -64,13 +69,13 @@ sealed class Screen(
     )
 }
 
-// === HALAMAN MATERI === \\
-@Composable
-fun MateriScreen() {
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text(text = "Halaman Materi")
-    }
-}
+// // === HALAMAN MATERI === \\
+// @Composable
+// fun MateriScreen() {
+//     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+//         Text(text = "Halaman Materi")
+//     }
+// }
 
 // === HALAMAN PRAKTIK === \\
 @Composable
@@ -108,6 +113,7 @@ fun NavigationBar(navController: NavController) {
     NavigationBar {
         screens.forEach { screen ->
             NavigationBarItem(
+                enabled = screen.title != "Praktik" && screen.title != "Latihan",
                 selected = currentRoute == screen.route,
                 onClick = {
                     navController.navigate(route = screen.route) {
@@ -136,16 +142,46 @@ fun NavigationBar(navController: NavController) {
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
+    var userName by rememberSaveable { mutableStateOf(value = "") }
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
 
     Scaffold(
-        bottomBar = { NavigationBar(navController = navController) }
+        bottomBar = {
+            if (currentRoute != ONBOARDING_ROUTE) {
+                NavigationBar(navController = navController)
+            }
+        }
     ) { paddingValues ->
         NavHost(
             navController = navController,
-            startDestination = Screen.Home.route,
+            startDestination = ONBOARDING_ROUTE,
             modifier = Modifier.padding(paddingValues)
         ) {
-            composable(route = Screen.Home.route) { HomeScreen(userName = "Fauzi", userAvatar = "🍕", navController = navController) }
+            composable(route = ONBOARDING_ROUTE) {
+                LoginScreen2(
+                    onLoginClick = { name ->
+                        userName = name
+                        navController.navigate(Screen.Home.route) {
+                            popUpTo(ONBOARDING_ROUTE) { inclusive = true }
+                            launchSingleTop = true
+                        }
+                    },
+                    onExploreClick = {
+                        navController.navigate(Screen.Materi.route) {
+                            popUpTo(ONBOARDING_ROUTE) { inclusive = true }
+                            launchSingleTop = true
+                        }
+                    }
+                )
+            }
+            composable(route = Screen.Home.route) {
+                HomeScreen(
+                    userName = userName.ifBlank { "Anonymous" },
+                    userAvatar = "",
+                    navController = navController
+                )
+            }
             composable(route = Screen.Materi.route) { MateriBelajar() }
             composable(route = Screen.Praktik.route) { PraktikScreen() }
             composable(route = Screen.Latihan.route) { LatihanScreen() }
