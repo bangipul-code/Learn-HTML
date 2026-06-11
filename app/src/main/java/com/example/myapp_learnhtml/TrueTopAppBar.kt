@@ -12,7 +12,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -101,7 +100,7 @@ fun ScrollContentB(innerPadding: PaddingValues) {
                     )
                     .padding(16.dp) // Jarak teks di dalam kotak ke border
             ) {
-                Button(onClick = { /* TODO */}) { Text(text = "- List item number ${index + 1}") }
+                // Button(onClick = { /* TODO */}) { Text(text = "- List item number ${index + 1}") }
             }
         }
     }

@@ -28,6 +28,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.myapp_learnhtml.ui.screens.ComplexHtmlViewer
+import com.example.myapp_learnhtml.ui.screens.DetailMateriScreen
 import com.example.myapp_learnhtml.ui.screens.HomeScreen
 
 private const val ONBOARDING_ROUTE = "onboarding"
@@ -97,7 +99,8 @@ fun LatihanScreen() {
 @Composable
 fun ProfilScreen() {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text(text = "Halaman Profil")
+        // Text(text = "Halaman Profil")
+        ComplexHtmlViewer(htmlContent = "<button>Button</button>")
     }
 }
 
@@ -182,7 +185,15 @@ fun MainScreen() {
                     navController = navController
                 )
             }
-            composable(route = Screen.Materi.route) { MateriBelajar() }
+            composable(route = Screen.Materi.route) { MateriBelajar(navController = navController) }
+            composable(route = "detail_materi/{index}") { backStackEntry ->
+                val indexStr = backStackEntry.arguments?.getString("index") ?: "0"
+                val index = indexStr.toIntOrNull() ?: 0
+                DetailMateriScreen(
+                    materiIndex = index,
+                    navController = navController
+                )
+            }
             composable(route = Screen.Praktik.route) { PraktikScreen() }
             composable(route = Screen.Latihan.route) { LatihanScreen() }
             composable(route = Screen.Profil.route) { ProfilScreen() }

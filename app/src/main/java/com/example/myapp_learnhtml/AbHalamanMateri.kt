@@ -34,6 +34,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 
 private data class MateriItem(
     val title: String,
@@ -108,9 +109,8 @@ private val materiItems = listOf(
     )
 )
 
-@Preview(showBackground = true)
 @Composable
-fun MateriBelajar() {
+fun MateriBelajar(navController: NavController) {
     val unlockedCount = materiItems.count { it.isUnlocked }
     val completedCount = materiItems.count { it.isCompleted }
     val progress = completedCount.toFloat() / materiItems.size
@@ -149,7 +149,12 @@ fun MateriBelajar() {
         itemsIndexed(materiItems) { index, item ->
             MateriCard(
                 number = index + 1,
-                item = item
+                item = item,
+                onClick = {
+                    if (item.isUnlocked) {
+                        navController.navigate("detail_materi/$index")
+                    }
+                }
             )
         }
 
@@ -309,7 +314,8 @@ private fun SectionTitle(
 @Composable
 private fun MateriCard(
     number: Int,
-    item: MateriItem
+    item: MateriItem,
+    onClick: () -> Unit
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -373,7 +379,7 @@ private fun MateriCard(
 
             if (item.isUnlocked) {
                 Button(
-                    onClick = { },
+                    onClick = onClick,
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Icon(
@@ -409,4 +415,11 @@ private fun itemStatus(item: MateriItem): String {
         item.isUnlocked -> "Tersedia"
         else -> "Terkunci"
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MateriBelajarPreview() {
+    val navController = androidx.navigation.compose.rememberNavController()
+    MateriBelajar(navController = navController)
 }
