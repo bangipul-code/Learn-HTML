@@ -1,1 +1,572 @@
 package com.example.myapp_learnhtml.ui.screens
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.filled.TrendingUp
+import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+
+@Composable
+fun ProgressScreen() {
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White),
+        contentPadding = PaddingValues(bottom = 24.dp)
+    ) {
+        // Header dengan tombol menu
+        item {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(60.dp)
+                    .background(
+                        color = Color(0xFF10B981),
+                        shape = RoundedCornerShape(bottomStart = 24.dp, bottomEnd = 24.dp)
+                    ),
+                contentAlignment = Alignment.CenterEnd
+            ) {
+                Text(
+                    text = "Progress",
+                    modifier = Modifier.align(Alignment.Center),
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
+                )
+                IconButton(
+                    onClick = {},
+                    modifier = Modifier.align(Alignment.CenterEnd)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.MoreVert,
+                        contentDescription = "More options",
+                        tint = Color.White
+                    )
+                }
+            }
+        }
+
+        // Overview Card
+        item {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(16.dp)),
+                    colors = CardDefaults.cardColors(containerColor = Color(0xFFF0FDF4))
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(20.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Center,
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.TrendingUp,
+                                contentDescription = "Progress Icon",
+                                tint = Color(0xFF10B981),
+                                modifier = Modifier.size(24.dp)
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(
+                                text = "Overall Progress",
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color(0xFF10B981)
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        Text(
+                            text = "72%",
+                            fontSize = 48.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color(0xFF10B981)
+                        )
+
+                        Spacer(modifier = Modifier.height(8.dp))
+
+                        LinearProgressIndicator(
+                            progress = { 0.72f },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(8.dp)
+                                .clip(RoundedCornerShape(4.dp)),
+                            color = Color(0xFF10B981),
+                            trackColor = Color(0xFFD1FAE5)
+                        )
+
+                        Spacer(modifier = Modifier.height(12.dp))
+
+                        Text(
+                            text = "Keep up the excellent work!",
+                            fontSize = 13.sp,
+                            color = Color(0xFF059669),
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
+            }
+        }
+
+        // Goals Section
+        item {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
+            ) {
+                Text(
+                    text = "Current Goals",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                ProgressItem(
+                    title = "HTML Basics",
+                    percentage = 85,
+                    description = "Learn fundamental HTML concepts",
+                    color = Color(0xFF3B82F6)
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                ProgressItem(
+                    title = "CSS Styling",
+                    percentage = 60,
+                    description = "Master CSS layouts and animations",
+                    color = Color(0xFF8B5CF6)
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                ProgressItem(
+                    title = "JavaScript Fundamentals",
+                    percentage = 45,
+                    description = "Understand JS core concepts",
+                    color = Color(0xFFF59E0B)
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                ProgressItem(
+                    title = "Responsive Design",
+                    percentage = 70,
+                    description = "Create mobile-friendly websites",
+                    color = Color(0xFFEC4899)
+                )
+            }
+        }
+
+        // Statistics Section
+        item {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 24.dp)
+            ) {
+                Text(
+                    text = "Statistics",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    StatCard(
+                        label = "Days Active",
+                        value = "28",
+                        icon = "📅",
+                        modifier = Modifier.weight(1f)
+                    )
+
+                    StatCard(
+                        label = "Lessons Done",
+                        value = "42",
+                        icon = "✅",
+                        modifier = Modifier.weight(1f)
+                    )
+
+                    StatCard(
+                        label = "Total Hours",
+                        value = "84",
+                        icon = "⏱️",
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+            }
+        }
+
+        // Achievements Section
+        item {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp)
+            ) {
+                Text(
+                    text = "Achievements",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight(),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    AchievementBadge(
+                        emoji = "🏅",
+                        title = "Quick Learner",
+                        unlocked = true
+                    )
+
+                    AchievementBadge(
+                        emoji = "🔥",
+                        title = "7-Day Streak",
+                        unlocked = true
+                    )
+
+                    AchievementBadge(
+                        emoji = "🎯",
+                        title = "Perfect Score",
+                        unlocked = false
+                    )
+
+                    AchievementBadge(
+                        emoji = "👑",
+                        title = "Master",
+                        unlocked = false
+                    )
+                }
+            }
+        }
+
+        // Milestones Section
+        item {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                Text(
+                    text = "Milestones",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                MilestoneItem(
+                    number = 1,
+                    title = "Complete HTML Basics",
+                    date = "Completed • May 10",
+                    completed = true
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                MilestoneItem(
+                    number = 2,
+                    title = "Complete CSS Course",
+                    date = "Completed • May 24",
+                    completed = true
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                MilestoneItem(
+                    number = 3,
+                    title = "Start JavaScript",
+                    date = "In Progress • Due: June 28",
+                    completed = false
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                MilestoneItem(
+                    number = 4,
+                    title = "Build Portfolio",
+                    date = "Upcoming • Due: July 31",
+                    completed = false
+                )
+            }
+        }
+
+        // Next Lesson
+        item {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(16.dp)),
+                    colors = CardDefaults.cardColors(containerColor = Color(0xFFFEF3C7))
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(20.dp)
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Column {
+                                Text(
+                                    text = "Next Lesson",
+                                    fontSize = 12.sp,
+                                    color = Color(0xFFB45309),
+                                    fontWeight = FontWeight.SemiBold
+                                )
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Text(
+                                    text = "JavaScript Variables & Data Types",
+                                    fontSize = 14.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.Black
+                                )
+                            }
+
+                            Button(
+                                onClick = {},
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = Color(0xFFF59E0B)
+                                ),
+                                shape = RoundedCornerShape(8.dp),
+                                modifier = Modifier.height(36.dp)
+                            ) {
+                                Text("Start", fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun ProgressItem(
+    title: String,
+    percentage: Int,
+    description: String,
+    color: Color
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(12.dp))
+            .background(Color(0xFFF8F9FA))
+            .padding(16.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = title,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    color = Color.Black
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = description,
+                    fontSize = 12.sp,
+                    color = Color(0xFF6C757D)
+                )
+            }
+            Text(
+                text = "$percentage%",
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold,
+                color = color
+            )
+        }
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        LinearProgressIndicator(
+            progress = { percentage / 100f },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(6.dp)
+                .clip(RoundedCornerShape(3.dp)),
+            color = color,
+            trackColor = Color(0xFFE9ECEF)
+        )
+    }
+}
+
+@Composable
+fun StatCard(
+    label: String,
+    value: String,
+    icon: String,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier
+            .clip(RoundedCornerShape(12.dp))
+            .background(Color(0xFFF3F4F6))
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = icon,
+            fontSize = 28.sp,
+            modifier = Modifier.padding(bottom = 8.dp)
+        )
+        Text(
+            text = value,
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.Black
+        )
+        Spacer(modifier = Modifier.height(4.dp))
+        Text(
+            text = label,
+            fontSize = 11.sp,
+            color = Color(0xFF6C757D),
+            fontWeight = FontWeight.Medium,
+            textAlign = TextAlign.Center
+        )
+    }
+}
+
+@Composable
+fun AchievementBadge(
+    emoji: String,
+    title: String,
+    unlocked: Boolean
+) {
+    Column(
+        modifier = Modifier
+            .clip(RoundedCornerShape(12.dp))
+            .background(
+                if (unlocked) Color(0xFFFEF3C7) else Color(0xFFE5E7EB)
+            )
+            .padding(12.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = emoji,
+            fontSize = 28.sp
+        )
+        Spacer(modifier = Modifier.height(6.dp))
+        Text(
+            text = title,
+            fontSize = 10.sp,
+            fontWeight = FontWeight.SemiBold,
+            color = if (unlocked) Color(0xFFB45309) else Color(0xFF6B7280),
+            textAlign = TextAlign.Center,
+            maxLines = 2
+        )
+    }
+}
+
+@Composable
+fun MilestoneItem(
+    number: Int,
+    title: String,
+    date: String,
+    completed: Boolean
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(12.dp))
+            .background(Color(0xFFF8F9FA))
+            .padding(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        verticalAlignment = Alignment.Top
+    ) {
+        // Timeline circle
+        Box(
+            modifier = Modifier
+                .size(40.dp)
+                .clip(CircleShape)
+                .background(
+                    if (completed) Color(0xFF10B981) else Color(0xFFE5E7EB)
+                ),
+            contentAlignment = Alignment.Center
+        ) {
+            if (completed) {
+                Icon(
+                    imageVector = Icons.Default.CheckCircle,
+                    contentDescription = "Completed",
+                    tint = Color.White,
+                    modifier = Modifier.size(24.dp)
+                )
+            } else {
+                Text(
+                    text = number.toString(),
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF6B7280)
+                )
+            }
+        }
+
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                text = title,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = Color.Black
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = date,
+                fontSize = 12.sp,
+                color = Color(0xFF6C757D)
+            )
+        }
+    }
+}
