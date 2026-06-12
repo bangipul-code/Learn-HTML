@@ -93,8 +93,8 @@ private val materiDetails = listOf(
                 judul = "Apa itu HTML?",
                 deskripsi = "HTML (HyperText Markup Language) adalah bahasa standar untuk membuat halaman web. HTML menyusun struktur halaman web, bertindak sebagai 'kerangka dasar' sebelum dipercantik dengan gaya (styling).",
                 analogi = "Analogi: Bayangkan HTML seperti struktur tulang manusia atau kerangka beton pada gedung sebelum dipasang dinding dan cat.",
-                contohKode = "<!-- Ini adalah contoh komentar dalam HTML -->\n<h1>Halo Dunia</h1>",
-                hasilDiWeb = "<h1>Hello World</h1>",
+                contohKode = "<h1>Hello World!</h1>",
+                hasilDiWeb = "<h1>Hello World!</h1>",
                 pertanyaan = "Apakah kegunaan utama dari HTML?",
                 pilihanJawaban = listOf(
                     "Mempercantik warna dan memberikan animasi pada halaman web",
@@ -129,8 +129,8 @@ private val materiDetails = listOf(
                 judul = "Dokumen HTML Pertama",
                 deskripsi = "Dokumen HTML disimpan dengan ekstensi file '.html'. Halaman web paling sederhana dimulai dengan tag pembuka html dan diakhiri dengan penutup html.",
                 analogi = "Analogi: File HTML seperti sebuah buku, semua halaman dan isinya harus berada di dalam sampul depan dan belakang.",
-                contohKode = "<html>\n  Halaman web pertama saya.\n</html>",
-                hasilDiWeb = "<html>Halaman web pertama saya.</html>",
+                contohKode = "<html>\n  Halaman Web.\n</html>",
+                hasilDiWeb = "<html>Halaman Web.</html>",
                 pertanyaan = "Apa ekstensi file yang digunakan untuk menyimpan dokumen HTML?",
                 pilihanJawaban = listOf(
                     ".html",
@@ -154,7 +154,7 @@ private val materiDetails = listOf(
                 deskripsi = "Deklarasi <!DOCTYPE html> ditulis di baris paling atas dokumen HTML untuk memberi tahu browser bahwa kita menggunakan HTML versi terbaru (HTML5).",
                 analogi = "Analogi: Seperti mencantumkan label 'Surat Resmi' di baris paling atas surat agar penerima langsung tahu formatnya.",
                 contohKode = "<!DOCTYPE html>\n<html>\n</html>",
-                hasilDiWeb = "(Halaman kosong) - DOCTYPE tidak memicu tampilan visual apa pun.",
+                hasilDiWeb = "(Halaman kosong)\n- DOCTYPE tidak memicu tampilan visual apa pun.",
                 pertanyaan = "Di manakah posisi penulisan deklarasi <!DOCTYPE html> yang benar?",
                 pilihanJawaban = listOf(
                     "Di dalam tag <body>",
@@ -189,8 +189,8 @@ private val materiDetails = listOf(
                 judul = "Elemen Body",
                 deskripsi = "Tag <body> menampung seluruh konten visual yang ingin ditampilkan kepada pengunjung situs, seperti teks, gambar, tombol, dan tabel.",
                 analogi = "Analogi: Seperti tubuh manusia yang terlihat secara fisik oleh orang lain.",
-                contohKode = "<body>\n  <p>Halo, selamat datang di web saya!</p>\n</body>",
-                hasilDiWeb = "<body> <p>HHalo, selamat datang di web saya!</p> </body>",
+                contohKode = "<body>\n  <p>Halo, selamat datang di website!</p>\n</body>",
+                hasilDiWeb = "<body> <p>Halo, selamat datang di website!</p> </body>",
                 pertanyaan = "Konten apa saja yang diletakkan di dalam tag <body>?",
                 pilihanJawaban = listOf(
                     "Hanya judul tab browser saja",
@@ -249,7 +249,7 @@ private val materiDetails = listOf(
                 judul = "Break Line (<br>) & Horizontal Rule (<hr>)",
                 deskripsi = "Tag <br> digunakan untuk pindah baris tanpa membuat paragraf baru. Tag <hr> digunakan untuk membuat garis horizontal pembatas. Kedua tag ini tidak memiliki tag penutup (tag mandiri).",
                 analogi = "Analogi: <br> seperti menekan tombol Enter pada keyboard ketik, sedangkan <hr> seperti menggarisbawahi kertas pembatas bab.",
-                contohKode = "Baris Satu<br>Baris Dua\n<hr>",
+                contohKode = "Baris Satu <br> Baris Dua <hr>",
                 hasilDiWeb = "Baris Satu <br> Baris Dua <hr> ",
                 pertanyaan = "Manakah pernyataan yang benar mengenai tag <br> dan <hr>?",
                 pilihanJawaban = listOf(
@@ -274,7 +274,7 @@ private val materiDetails = listOf(
                 deskripsi = "Navigasi antarhalaman web menggunakan tag anchor <a> (anchor). Teks di antara tag pembuka dan penutup akan menjadi tautan yang dapat diklik.",
                 analogi = "Analogi: Seperti pintu portal ajaib yang menghubungkan satu ruangan ke ruangan lain di tempat yang berbeda.",
                 contohKode = "<a>Klik saya</a>",
-                hasilDiWeb = "Klik saya",
+                hasilDiWeb = "<a>Klik saya</a>",
                 pertanyaan = "Apa fungsi utama dari tag <a> di HTML?",
                 pilihanJawaban = listOf(
                     "Membuat teks tebal penjelas",
@@ -293,7 +293,7 @@ private val materiDetails = listOf(
                 deskripsi = "Atribut href (hypertext reference) diletakkan di dalam tag pembuka <a> untuk menentukan alamat tujuan dari link tersebut.",
                 analogi = "Analogi: Seperti alamat rumah pada amplop surat, memberi tahu tujuan ke mana link harus diarahkan.",
                 contohKode = "<a href=\"https://google.com\">Cari di Google</a>",
-                hasilDiWeb = "Cari di Google (Teks biru bergaris bawah)",
+                hasilDiWeb = "<a href=https://google.com>Cari di Google</a>",
                 pertanyaan = "Di manakah letak penulisan atribut href yang tepat?",
                 pilihanJawaban = listOf(
                     "Di dalam tag pembuka <a>",
@@ -311,7 +311,7 @@ private val materiDetails = listOf(
                 deskripsi = "Secara default, link akan terbuka di tab yang sama. Kita bisa memaksa link terbuka di tab browser baru dengan menambahkan atribut target=\"_blank\".",
                 analogi = "Analogi: Seperti menyuruh seseorang membuka buku baru di atas meja, tanpa menutup buku lama yang sedang ia baca.",
                 contohKode = "<a href=\"halaman.html\" target=\"_blank\">Buka Tab Baru</a>",
-                hasilDiWeb = "Buka Tab Baru (Mengklik akan membuka halaman di tab baru)",
+                hasilDiWeb = "<a href='halaman.html' target='_blank'>Buka Tab Baru</a>",
                 pertanyaan = "Atribut apa yang digunakan untuk membuka link di tab baru?",
                 pilihanJawaban = listOf(
                     "target=\"_new\"",
@@ -334,8 +334,8 @@ private val materiDetails = listOf(
                 judul = "Tag Gambar (<img>)",
                 deskripsi = "Tag <img> digunakan untuk menampilkan gambar. Tag ini merupakan tag mandiri (tidak memiliki pasangan tag penutup).",
                 analogi = "Analogi: Seperti memasang bingkai foto di dinding kamar. Bingkai itu berdiri sendiri tanpa penutup.",
-                contohKode = "<img src=\"logo.png\">",
-                hasilDiWeb = "[Tampilan Gambar Logo]",
+                contohKode = "<img src='logo.png'>",
+                hasilDiWeb = "<img src='https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg>",
                 pertanyaan = "Apakah tag <img> membutuhkan tag penutup seperti </img>?",
                 pilihanJawaban = listOf(
                     "Ya, harus memiliki tag penutup",
@@ -353,7 +353,7 @@ private val materiDetails = listOf(
                 deskripsi = "Atribut src (source) berisi lokasi gambar. Atribut alt (alternate text) berisi deskripsi gambar yang muncul jika gambar gagal dimuat atau dibaca oleh pembaca layar (screen reader) bagi penyandang disabilitas.",
                 analogi = "Analogi: src adalah peta arah jalan ke toko foto, sedangkan alt adalah deskripsi tertulis tentang foto tersebut ketika mati lampu.",
                 contohKode = "<img src=\"kucing.jpg\" alt=\"Foto Kucing Hitam\">",
-                hasilDiWeb = "[Tampilan Foto Kucing Hitam / Teks alternatif jika gambar gagal]",
+                hasilDiWeb = "<img src='https://images.alodokter.com/dk0z4ums3/image/upload/v1775008190/attached_image/5-fakta-kucing-hitam-ini-yang-perlu-diketahui-0-alodokter.jpg'>",
                 pertanyaan = "Apa kegunaan dari atribut alt pada tag <img>?",
                 pilihanJawaban = listOf(
                     "Mengubah format gambar dari JPG ke PNG",
@@ -371,7 +371,7 @@ private val materiDetails = listOf(
                 deskripsi = "Kita dapat mengatur lebar (width) dan tinggi (height) gambar menggunakan atribut dalam satuan piksel secara langsung pada tag <img>.",
                 analogi = "Analogi: Menentukan ukuran cetak foto (misal: lebar 20cm dan tinggi 15cm) agar pas di dalam bingkai.",
                 contohKode = "<img src=\"kucing.jpg\" width=\"200\" height=\"150\" alt=\"Kucing\">",
-                hasilDiWeb = "[Gambar Kucing dengan lebar 200 piksel dan tinggi 150 piksel]",
+                hasilDiWeb = "<img src width='200' height='150'='https://images.alodokter.com/dk0z4ums3/image/upload/v1773189708/attached_image/kucing-bengal-inilah-ciri-khas-karakter-dan-cara-merawatnya-0-alodokter.jpg'>",
                 pertanyaan = "Satuan default apakah yang digunakan ketika menentukan atribut width=\"200\"?",
                 pilihanJawaban = listOf(
                     "Persentase (%)",
