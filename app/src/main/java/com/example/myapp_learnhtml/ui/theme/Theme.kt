@@ -1,6 +1,5 @@
 package com.example.myapp_learnhtml.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -21,6 +20,10 @@ private val LightColorScheme = lightColorScheme(
     primary = Purple40,
     secondary = PurpleGrey40,
     tertiary = Pink40
+
+    // primary = Color(0xFFE3FDFD),
+    // secondary = Color(0xFFCBF1F5),
+    // tertiary = Color(0xFFA6E3E9)
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),

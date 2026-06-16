@@ -224,10 +224,10 @@ private fun ContinueLearningCard(
 ) {
     OutlinedCard(
         modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(24.dp)
+        shape = RoundedCornerShape(size = 24.dp)
     ) {
         Column(
-            modifier = Modifier.padding(20.dp),
+            modifier = Modifier.padding(all = 20.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -245,7 +245,7 @@ private fun ContinueLearningCard(
             Button(
                 onClick = onContinue,
                 modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(16.dp)
+                shape = RoundedCornerShape(size = 16.dp)
             ) {
                 Text(text = "Lanjutkan belajar")
             }
@@ -253,7 +253,7 @@ private fun ContinueLearningCard(
             OutlinedButton(
                 onClick = onPractice,
                 modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(16.dp)
+                shape = RoundedCornerShape(size = 16.dp)
             ) {
                 Text(text = "Praktikkan materi")
             }

@@ -3,7 +3,6 @@ package com.example.myapp_learnhtml.ui.screens
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
@@ -26,7 +25,6 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -42,7 +40,6 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -56,14 +53,13 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.myapp_learnhtml.ui.viewmodel.DetailMateriViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -119,7 +115,7 @@ fun DetailMateriScreen(
                         overflow = TextOverflow.Ellipsis,
                         fontWeight = FontWeight.Bold,
                         style = MaterialTheme.typography.titleMedium,
-                        color = Color.Black
+                        // color = Color.Black
                     )
                 },
                 navigationIcon = {
@@ -127,22 +123,28 @@ fun DetailMateriScreen(
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Kembali",
-                            tint = Color.Black
+                            // tint = Color.Black
                         )
                     }
                 },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = Color.White
-                ),
-                modifier = Modifier.border(width = 1.dp, color = Color(0xFFE0E0E0))
+                // colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                //     containerColor = Color.White
+                // ),
+                modifier = Modifier.border(
+                    width = 1.dp,
+                    color = Color.Black
+                )
             )
         },
         bottomBar = {
             Surface(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .border(width = 1.dp, color = Color(0xFFE0E0E0)),
-                color = Color.White
+                    .border(
+                        width = 1.dp,
+                        color = Color.Black
+                    ),
+                // color = Color.White
             ) {
                 Row(
                     modifier = Modifier
@@ -154,11 +156,11 @@ fun DetailMateriScreen(
                     OutlinedButton(
                         onClick = { viewModel.goToPreviousPage() },
                         enabled = currentPageIndex > 0,
-                        shape = RoundedCornerShape(10.dp),
-                        colors = ButtonDefaults.outlinedButtonColors(
-                            contentColor = Color.Black,
-                            disabledContentColor = Color.Gray
-                        ),
+                        shape = RoundedCornerShape(size = 10.dp),
+                        // colors = ButtonDefaults.outlinedButtonColors(
+                        //     contentColor = Color.Black,
+                        //     disabledContentColor = Color.Gray
+                        // ),
                         modifier = Modifier.width(130.dp)
                     ) {
                         Text(text = "Sebelumnya", fontWeight = FontWeight.SemiBold)
@@ -174,10 +176,10 @@ fun DetailMateriScreen(
                             }
                         },
                         shape = RoundedCornerShape(size = 10.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color.Black,
-                            contentColor = Color.White
-                        ),
+                        // colors = ButtonDefaults.buttonColors(
+                        //     containerColor = Color.Black,
+                        //     contentColor = Color.White
+                        // ),
                         modifier = Modifier.width(130.dp)
                     ) {
                         Text(
@@ -188,25 +190,25 @@ fun DetailMateriScreen(
                 }
             }
         },
-        containerColor = Color.White
+        // containerColor = Color.White
     ) { innerPadding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding)
-                .verticalScroll(rememberScrollState())
-                .padding(16.dp),
+                .padding(paddingValues = innerPadding)
+                .verticalScroll(state = rememberScrollState())
+                .padding(all = 16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             // Progress Bar
             Card(
                 modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(12.dp),
-                colors = CardDefaults.cardColors(containerColor = Color(0xFFF5F5F5)),
+                shape = RoundedCornerShape(size = 12.dp),
+                // colors = CardDefaults.cardColors(containerColor = Color(0xFFF5F5F5)),
                 border = CardDefaults.outlinedCardBorder()
             ) {
                 Column(
-                    modifier = Modifier.padding(12.dp),
+                    modifier = Modifier.padding(all = 12.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     Row(
@@ -222,23 +224,23 @@ fun DetailMateriScreen(
                                     .padding(vertical = 4.dp)
                             ) {
                                 Text(
-                                    text = "Langkah ${currentPageIndex + 1} dari ${pages.size}",
+                                    text = "Materi ${currentPageIndex + 1} dari ${pages.size}",
                                     style = MaterialTheme.typography.bodyMedium,
                                     fontWeight = FontWeight.SemiBold,
-                                    color = Color.Black
+                                    // color = Color.Black
                                 )
                                 Spacer(modifier = Modifier.width(4.dp))
                                 Icon(
                                     imageVector = Icons.Filled.ArrowDropDown,
                                     contentDescription = "Pilih Halaman",
-                                    tint = Color.Black,
+                                    // tint = Color.Black,
                                     modifier = Modifier.size(16.dp)
                                 )
                             }
                             DropdownMenu(
                                 expanded = menuExpanded,
                                 onDismissRequest = { menuExpanded = false },
-                                modifier = Modifier.background(Color.White)
+                                // modifier = Modifier.background(Color.White)
                             ) {
                                 pages.forEachIndexed { index, p ->
                                     DropdownMenuItem(
@@ -262,7 +264,7 @@ fun DetailMateriScreen(
                             text = "${(progress * 100).toInt()}% Selesai",
                             style = MaterialTheme.typography.bodySmall,
                             fontWeight = FontWeight.Bold,
-                            color = Color.Black
+                            // color = Color.Black
                         )
                     }
 
@@ -271,8 +273,8 @@ fun DetailMateriScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(6.dp),
-                        color = Color.Black,
-                        trackColor = Color(0xFFE0E0E0)
+                        // color = Color.Black,
+                        // trackColor = Color(0xFFE0E0E0)
                     )
                 }
             }
@@ -282,25 +284,26 @@ fun DetailMateriScreen(
                 text = page.judul,
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.ExtraBold,
-                color = Color.Black
+                // color = Color.Black
             )
 
             // Card Deskripsi
             Card(
                 modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(12.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
+                shape = RoundedCornerShape(size = 12.dp),
+                // colors = CardDefaults.cardColors(containerColor = Color.White),
                 border = CardDefaults.outlinedCardBorder()
             ) {
                 Column(
-                    modifier = Modifier.padding(16.dp),
+                    modifier = Modifier.padding(all = 16.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     Text(
                         text = page.deskripsi,
+                        textAlign = TextAlign.Justify,
                         style = MaterialTheme.typography.bodyMedium,
                         lineHeight = 22.sp,
-                        color = Color.Black
+                        // color = Color.Black
                     )
                 }
             }
@@ -309,18 +312,18 @@ fun DetailMateriScreen(
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
-                colors = CardDefaults.cardColors(containerColor = Color(0xFFFAFAFA)),
+                // colors = CardDefaults.cardColors(containerColor = Color(0xFFFAFAFA)),
                 border = CardDefaults.outlinedCardBorder()
             ) {
                 Row(
-                    modifier = Modifier.padding(14.dp),
+                    modifier = Modifier.padding(all = 14.dp),
                     horizontalArrangement = Arrangement.spacedBy(10.dp),
                     verticalAlignment = Alignment.Top
                 ) {
                     Icon(
                         imageVector = Icons.Filled.Info,
                         contentDescription = "Analogi",
-                        tint = Color.Gray,
+                        // tint = Color.Gray,
                         modifier = Modifier.size(20.dp)
                     )
                     Text(
@@ -328,7 +331,7 @@ fun DetailMateriScreen(
                         style = MaterialTheme.typography.bodyMedium,
                         fontWeight = FontWeight.Normal,
                         lineHeight = 20.sp,
-                        color = Color(0xFF4A4A4A)
+                        // color = Color(0xFF4A4A4A)
                     )
                 }
             }
@@ -341,17 +344,17 @@ fun DetailMateriScreen(
                     text = "Contoh Kode HTML:",
                     style = MaterialTheme.typography.bodySmall,
                     fontWeight = FontWeight.Bold,
-                    color = Color.Gray
+                    // color = Color.Gray
                 )
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
                         .border(
                             width = 1.dp,
-                            color = Color(0xFFCCCCCC),
-                            shape = RoundedCornerShape(8.dp)
+                            color = Color.Gray,
+                            shape = RoundedCornerShape(size = 8.dp)
                         )
-                        .background(color = Color(0xFFF9F9F9), shape = RoundedCornerShape(8.dp))
+                        // .background(color = Color(0xFFF9F9F9), shape = RoundedCornerShape(8.dp))
                         .padding(12.dp)
                         .horizontalScroll(rememberScrollState())
                 ) {
@@ -359,7 +362,7 @@ fun DetailMateriScreen(
                         text = page.contohKode,
                         fontFamily = FontFamily.Monospace,
                         fontSize = 13.sp,
-                        color = Color.Black
+                        // color = Color.Black
                     )
                 }
 
@@ -367,18 +370,18 @@ fun DetailMateriScreen(
                     text = "Hasil Render di Browser:",
                     style = MaterialTheme.typography.bodySmall,
                     fontWeight = FontWeight.Bold,
-                    color = Color.Gray
+                    // color = Color.Gray
                 )
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
                         .border(
                             width = 1.dp,
-                            color = Color(0xFFE0E0E0),
-                            shape = RoundedCornerShape(8.dp)
+                            color = Color.Black,
+                            shape = RoundedCornerShape(size = 8.dp)
                         )
-                        .background(color = Color.White, shape = RoundedCornerShape(8.dp))
-                        .padding(12.dp)
+                        // .background(color = Color.White, shape = RoundedCornerShape(8.dp))
+                        .padding(all = 12.dp)
                 ) {
                     AndroidWebView(htmlContent = page.hasilDiWeb)
                 }
@@ -388,7 +391,7 @@ fun DetailMateriScreen(
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
-                colors = CardDefaults.cardColors(containerColor = Color(0xFFF9F9F9)),
+                // colors = CardDefaults.cardColors(containerColor = Color(0xFFF9F9F9)),
                 border = CardDefaults.outlinedCardBorder()
             ) {
                 Column(modifier = Modifier.fillMaxWidth()) {
@@ -397,7 +400,7 @@ fun DetailMateriScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable { glossaryExpanded = !glossaryExpanded }
-                            .padding(14.dp),
+                            .padding(all = 14.dp),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
@@ -408,20 +411,20 @@ fun DetailMateriScreen(
                             Icon(
                                 imageVector = Icons.Filled.Info,
                                 contentDescription = "Glosarium",
-                                tint = Color.Black,
+                                // tint = Color.Black,
                                 modifier = Modifier.size(18.dp)
                             )
                             Text(
-                                text = "Glosarium & Bantuan Cepat",
+                                text = "Glosarium",
                                 style = MaterialTheme.typography.bodyMedium,
                                 fontWeight = FontWeight.Bold,
-                                color = Color.Black
+                                // color = Color.Black
                             )
                         }
                         Icon(
                             imageVector = Icons.Filled.ArrowDropDown,
                             contentDescription = if (glossaryExpanded) "Tutup" else "Buka",
-                            tint = Color.Black,
+                            // tint = Color.Black,
                             modifier = Modifier.rotate(glossaryRotation)
                         )
                     }
@@ -440,12 +443,12 @@ fun DetailMateriScreen(
                                         text = item.istilah,
                                         style = MaterialTheme.typography.bodySmall,
                                         fontWeight = FontWeight.Bold,
-                                        color = Color.Black
+                                        // color = Color.Black
                                     )
                                     Text(
                                         text = item.definisi,
                                         style = MaterialTheme.typography.bodySmall,
-                                        color = Color.DarkGray,
+                                        // color = Color.DarkGray,
                                         lineHeight = 16.sp
                                     )
                                 }
@@ -480,9 +483,9 @@ fun AndroidWebView(htmlContent: String, modifier: Modifier = Modifier) {
     )
 }
 
-@Preview(showBackground = true)
-@Composable
-private fun DetailMateriScreenPreview() {
-    val navController = rememberNavController()
-    DetailMateriScreen(materiIndex = 0, navController = navController)
-}
+// @Preview(showBackground = true)
+// @Composable
+// private fun DetailMateriScreenPreview() {
+//     val navController = rememberNavController()
+//     DetailMateriScreen(materiIndex = 0, navController = navController)
+// }

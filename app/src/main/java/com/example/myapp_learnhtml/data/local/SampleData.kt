@@ -14,7 +14,7 @@ object SampleData {
     )
 
     val pages = listOf(
-        MateriPage(
+        MateriPage( // Pengenalan HTML
             id = 0, topicId = 0, pageOrder = 0,
             judul = "Apa itu HTML?",
             deskripsi = "HTML (HyperText Markup Language) adalah bahasa standar untuk membuat halaman web. HTML menyusun struktur halaman web, bertindak sebagai 'kerangka dasar' sebelum dipercantik dengan gaya (styling).",
@@ -37,11 +37,12 @@ object SampleData {
             judul = "Dokumen HTML Pertama",
             deskripsi = "Dokumen HTML disimpan dengan ekstensi file '.html'. Halaman web paling sederhana dimulai dengan tag pembuka html dan diakhiri dengan penutup html.",
             analogi = "Analogi: File HTML seperti sebuah buku, semua halaman dan isinya harus berada di dalam sampul depan dan belakang.",
-            contohKode = "<html>\nHalaman Web.\n</html>",
+            contohKode = "<html>\n  Halaman Web.\n</html>",
             hasilDiWeb = "<html>Halaman Web.</html>",
             glosariumJson = """[{"istilah":"Browser","definisi":"Aplikasi pembaca halaman web (seperti Chrome, Firefox, Safari)."}]"""
         ),
-        MateriPage(
+
+        MateriPage( // Struktur Dokumen
             id = 10, topicId = 1, pageOrder = 0,
             judul = "Deklarasi DOCTYPE",
             deskripsi = "Deklarasi <!DOCTYPE html> ditulis di baris paling atas dokumen HTML untuk memberi tahu browser bahwa kita menggunakan HTML versi terbaru (HTML5).",
@@ -68,7 +69,8 @@ object SampleData {
             hasilDiWeb = "<body> <p>Halo, selamat datang di website!</p> </body>",
             glosariumJson = """[{"istilah":"Konten Visual","definisi":"Semua bagian halaman web yang dapat dilihat langsung oleh pengguna."}]"""
         ),
-        MateriPage(
+
+        MateriPage( // Heading dan Paragraf
             id = 20, topicId = 2, pageOrder = 0,
             judul = "Heading (h1 - h6)",
             deskripsi = "Heading digunakan untuk membuat judul utama dan subjudul. Ada enam tingkatan, dari <h1> (terbesar & terpenting) hingga <h6> (terkecil).",
@@ -95,7 +97,8 @@ object SampleData {
             hasilDiWeb = "Baris Satu <br> Baris Dua <hr> ",
             glosariumJson = """[{"istilah":"Void Elements","definisi":"Tag yang tidak memiliki konten penutup, hanya berisi deklarasi tunggal."}]"""
         ),
-        MateriPage(
+
+        MateriPage( // Link dan Navigasi
             id = 30, topicId = 3, pageOrder = 0,
             judul = "Tag Anchor (<a>)",
             deskripsi = "Navigasi antarhalaman web menggunakan tag anchor <a> (anchor). Teks di antara tag pembuka dan penutup akan menjadi tautan yang dapat diklik.",
@@ -122,13 +125,14 @@ object SampleData {
             hasilDiWeb = """<a href='halaman.html' target='_blank'>Buka Tab Baru</a>""",
             glosariumJson = """[{"istilah":"_blank","definisi":"Nilai khusus (keyword) yang memerintahkan browser untuk membuat konteks penjelajahan baru."}]"""
         ),
-        MateriPage(
+
+        MateriPage( // Gambar dan Atribut
             id = 40, topicId = 4, pageOrder = 0,
             judul = "Tag Gambar (<img>)",
             deskripsi = "Tag <img> digunakan untuk menampilkan gambar. Tag ini merupakan tag mandiri (tidak memiliki pasangan tag penutup).",
             analogi = "Analogi: Seperti memasang bingkai foto di dinding kamar. Bingkai itu berdiri sendiri tanpa penutup.",
             contohKode = "<img src='logo.png'>",
-            hasilDiWeb = "<img src='https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg>",
+            hasilDiWeb = "<img src='https://www.w3.org/html/logo/img/mark-word-icon.png>",
             glosariumJson = """[{"istilah":"Self-closing/Mandiri","definisi":"Tag yang tidak mengapit konten teks sehingga tidak memerlukan tag penutup."}]"""
         ),
         MateriPage(
@@ -137,7 +141,7 @@ object SampleData {
             deskripsi = "Atribut src (source) berisi lokasi gambar. Atribut alt (alternate text) berisi deskripsi gambar yang muncul jika gambar gagal dimuat atau dibaca oleh pembaca layar (screen reader) bagi penyandang disabilitas.",
             analogi = "Analogi: src adalah peta arah jalan ke toko foto, sedangkan alt adalah deskripsi tertulis tentang foto tersebut ketika mati lampu.",
             contohKode = """<img src="kucing.jpg" alt="Foto Kucing Hitam">""",
-            hasilDiWeb = "<img src='https://images.alodokter.com/dk0z4ums3/image/upload/v1775008190/attached_image/5-fakta-kucing-hitam-ini-yang-perlu-diketahui-0-alodokter.jpg'>",
+            hasilDiWeb = "<img src='https://images.unsplash.com/photo-1603108025081-4146ecdec5b5?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'>",
             glosariumJson = """[{"istilah":"Screen Reader","definisi":"Perangkat lunak pembantu tunanetra yang membacakan teks di layar."}]"""
         ),
         MateriPage(
@@ -145,8 +149,8 @@ object SampleData {
             judul = "Mengatur Ukuran Gambar",
             deskripsi = "Kita dapat mengatur lebar (width) dan tinggi (height) gambar menggunakan atribut dalam satuan piksel secara langsung pada tag <img>.",
             analogi = "Analogi: Menentukan ukuran cetak foto (misal: lebar 20cm dan tinggi 15cm) agar pas di dalam bingkai.",
-            contohKode = """<img src="kucing.jpg" width="200" height="150" alt="Kucing">""",
-            hasilDiWeb = "<img src width='200' height='150'='https://images.alodokter.com/dk0z4ums3/image/upload/v1773189708/attached_image/kucing-bengal-inilah-ciri-khas-karakter-dan-cara-merawatnya-0-alodokter.jpg'>",
+            contohKode = """<img src="kucing.jpg" width="200" height="150" alt="Foto Kucing">""",
+            hasilDiWeb = "<img src width='200' height='150'='https://plus.unsplash.com/premium_photo-1667030474693-6d0632f97029?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'>",
             glosariumJson = """[{"istilah":"Piksel","definisi":"Unsur gambar atau representasi titik terkecil dalam gambar grafis."}]"""
         )
     )

@@ -32,9 +32,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.myapp_learnhtml.ui.screens.ComplexHtmlViewer
 import com.example.myapp_learnhtml.ui.screens.DetailMateriScreen
 import com.example.myapp_learnhtml.ui.screens.HomeScreen
+import com.example.myapp_learnhtml.ui.screens.ProfilScreen
 
 private const val ONBOARDING_ROUTE = "onboarding"
 
@@ -100,13 +100,12 @@ fun LatihanScreen() {
 }
 
 // === HALAMAN PROFIL === \\
-@Composable
-fun ProfilScreen() {
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        // Text(text = "Halaman Profil")
-        ComplexHtmlViewer(htmlContent = "<button>Button</button>")
-    }
-}
+// @Composable
+// fun ProfilScreen() {
+//     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+//         Text(text = "Halaman Profil")
+//     }
+// }
 
 // ========== MAIN SCREEN ========== \\
 
