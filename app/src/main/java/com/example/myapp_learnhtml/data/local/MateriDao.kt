@@ -5,7 +5,9 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.myapp_learnhtml.data.model.MateriPage
+import com.example.myapp_learnhtml.data.model.MateriProgress
 import com.example.myapp_learnhtml.data.model.MateriTopic
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MateriDao {
@@ -27,4 +29,13 @@ interface MateriDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPages(pages: List<MateriPage>)
+
+    @Query(value = "SELECT * FROM materi_progress")
+    fun observeAllProgress(): Flow<List<MateriProgress>>
+
+    @Query(value = "SELECT * FROM materi_progress WHERE materiIndex = :index")
+    suspend fun getProgress(index: Int): MateriProgress?
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsertProgress(progress: MateriProgress)
 }

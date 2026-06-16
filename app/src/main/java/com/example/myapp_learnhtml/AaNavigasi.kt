@@ -1,5 +1,6 @@
 package com.example.myapp_learnhtml
 
+import android.content.Context
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -17,12 +18,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.content.edit
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -145,7 +149,20 @@ fun NavigationBar(navController: NavController) {
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
-    var userName by rememberSaveable { mutableStateOf(value = "") }
+
+    val context = LocalContext.current
+    val prefs = remember {
+        context.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+    }
+    var userName by rememberSaveable {
+        mutableStateOf(value = prefs.getString("user_name", "") ?: "")
+    }
+
+    // Tentukan rute awal: jika nama sudah ada, langsung ke Dashboard (Home)
+    val startDestination = remember {
+        if (userName.isBlank()) ONBOARDING_ROUTE else Screen.Home.route
+    }
+
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
@@ -158,13 +175,15 @@ fun MainScreen() {
     ) { paddingValues ->
         NavHost(
             navController = navController,
-            startDestination = ONBOARDING_ROUTE,
+            startDestination = startDestination,
             modifier = Modifier.padding(paddingValues)
         ) {
             composable(route = ONBOARDING_ROUTE) {
                 LoginScreen2(
                     onLoginClick = { name ->
                         userName = name
+                        prefs.edit { putString("user_name", name) }
+
                         navController.navigate(Screen.Home.route) {
                             popUpTo(ONBOARDING_ROUTE) { inclusive = true }
                             launchSingleTop = true

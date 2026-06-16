@@ -28,89 +28,25 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-
-private data class MateriItem(
-    val title: String,
-    val description: String,
-    val duration: String,
-    val isUnlocked: Boolean,
-    val isCompleted: Boolean = false
-)
-
-private val materiItems = listOf(
-    MateriItem(
-        title = "Pengenalan HTML",
-        description = "Mengenal Fungsi HTML dan Struktur Dasar Halaman Web",
-        duration = "8 menit",
-        isUnlocked = true,
-        isCompleted = true
-    ),
-    MateriItem(
-        title = "Struktur Dokumen",
-        description = "Mengenal Struktur Utama: doctype, html, head, dan body",
-        duration = "10 menit",
-        isUnlocked = true,
-        isCompleted = true
-    ),
-    MateriItem(
-        title = "Heading dan Paragraf",
-        description = "Susun konten teks yang mudah dibaca.",
-        duration = "7 menit",
-        isUnlocked = true
-    ),
-    MateriItem(
-        title = "Link dan Navigasi",
-        description = "Buat hubungan antarhalaman dengan anchor.",
-        duration = "9 menit",
-        isUnlocked = true
-    ),
-    MateriItem(
-        title = "Gambar dan Atribut",
-        description = "Gunakan gambar dengan atribut yang jelas.",
-        duration = "11 menit",
-        isUnlocked = true
-    ),
-    MateriItem(
-        title = "List dan Tabel",
-        description = "Tampilkan data terstruktur secara rapi.",
-        duration = "12 menit",
-        isUnlocked = false
-    ),
-    MateriItem(
-        title = "Form Dasar",
-        description = "Kenali input, label, dan validasi sederhana.",
-        duration = "15 menit",
-        isUnlocked = false
-    ),
-    MateriItem(
-        title = "Semantic HTML",
-        description = "Gunakan tag semantik untuk aksesibilitas.",
-        duration = "13 menit",
-        isUnlocked = false
-    ),
-    MateriItem(
-        title = "Media HTML",
-        description = "Tambahkan audio dan video dengan kontrol yang tepat.",
-        duration = "10 menit",
-        isUnlocked = false
-    ),
-    MateriItem(
-        title = "Mini Project",
-        description = "Gabungkan konsep utama menjadi halaman profil.",
-        duration = "20 menit",
-        isUnlocked = false
-    )
-)
+import com.example.myapp_learnhtml.data.model.MateriItem
+import com.example.myapp_learnhtml.ui.viewmodel.MateriViewModel
 
 @Composable
-fun MateriBelajar(navController: NavController) {
+fun MateriBelajar(
+    navController: NavController,
+    viewModel: MateriViewModel = viewModel()
+) {
+    val materiItems by viewModel.materiItems.collectAsState()
     val unlockedCount = materiItems.count { it.isUnlocked }
     val completedCount = materiItems.count { it.isCompleted }
     val progress = completedCount.toFloat() / materiItems.size
@@ -189,11 +125,11 @@ private fun ProgressSummary(
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(20.dp),
+        shape = RoundedCornerShape(size = 20.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
         Column(
-            modifier = Modifier.padding(20.dp),
+            modifier = Modifier.padding(all = 20.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             Row(
@@ -236,13 +172,13 @@ private fun UnlockSummary(
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(20.dp),
+        shape = RoundedCornerShape(size = 20.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(20.dp),
+                .padding(all = 20.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Row(
@@ -252,13 +188,13 @@ private fun UnlockSummary(
             ) {
                 Surface(
                     modifier = Modifier.size(48.dp),
-                    shape = RoundedCornerShape(16.dp),
+                    shape = RoundedCornerShape(size = 16.dp),
                     tonalElevation = 1.dp
                 ) {
                     Icon(
                         imageVector = Icons.Filled.Lock,
                         contentDescription = null,
-                        modifier = Modifier.padding(12.dp)
+                        modifier = Modifier.padding(all = 12.dp)
                     )
                 }
 
@@ -325,7 +261,7 @@ private fun MateriCard(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(all = 16.dp),
             verticalArrangement = Arrangement.spacedBy(14.dp)
         ) {
             Row(
@@ -335,7 +271,7 @@ private fun MateriCard(
             ) {
                 Surface(
                     modifier = Modifier.size(44.dp),
-                    shape = RoundedCornerShape(14.dp),
+                    shape = RoundedCornerShape(size = 14.dp),
                     tonalElevation = 1.dp
                 ) {
                     Row(
@@ -344,7 +280,7 @@ private fun MateriCard(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = number.toString().padStart(2, '0'),
+                            text = number.toString().padStart(length = 2, padChar = '0'),
                             style = MaterialTheme.typography.labelLarge,
                             fontWeight = FontWeight.Bold
                         )

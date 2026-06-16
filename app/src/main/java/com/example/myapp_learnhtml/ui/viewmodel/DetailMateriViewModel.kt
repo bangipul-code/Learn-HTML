@@ -98,4 +98,15 @@ class DetailMateriViewModel(application: Application) : AndroidViewModel(applica
     }
 
     fun getPageCount(): Int = _pages.value.size
+
+    fun markMateriCompleted(materiIndex: Int) {
+        viewModelScope.launch {
+            dao.upsertProgress(
+                com.example.myapp_learnhtml.data.model.MateriProgress(
+                    materiIndex = materiIndex,
+                    isCompleted = true
+                )
+            )
+        }
+    }
 }

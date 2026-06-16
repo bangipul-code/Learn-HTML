@@ -169,6 +169,7 @@ fun DetailMateriScreen(
                             if (currentPageIndex < pages.lastIndex) {
                                 viewModel.goToNextPage()
                             } else {
+                                viewModel.markMateriCompleted(materiIndex)
                                 navController.popBackStack()
                             }
                         },
