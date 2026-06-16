@@ -1,8 +1,7 @@
 plugins {
-    // Di sini kita hapus semua baris yang ada tulisan 'apply false'
     alias(libs.plugins.android.application)
-//    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -35,10 +34,10 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-//    kotlinOptions {
-        // Menyelaraskan target compiler Kotlin dengan versi Java 17
-//        jvmTarget = "17"
-//    }
+    // kotlinOptions {
+    //     // Menyelaraskan target compiler Kotlin dengan versi Java 17
+    //     jvmTarget = "17"
+    // }
 
     buildFeatures {
         compose = true
@@ -62,8 +61,13 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.ui)
     implementation(platform(libs.androidx.compose.bom))
+    ksp(libs.androidx.room.compiler)
     testImplementation(libs.junit)
 }
