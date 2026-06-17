@@ -50,7 +50,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -132,7 +131,7 @@ fun DetailMateriScreen(
                 // ),
                 modifier = Modifier.border(
                     width = 1.dp,
-                    color = Color.Black
+                    color = MaterialTheme.colorScheme.outlineVariant
                 )
             )
         },
@@ -142,7 +141,7 @@ fun DetailMateriScreen(
                     .fillMaxWidth()
                     .border(
                         width = 1.dp,
-                        color = Color.Black
+                        color = MaterialTheme.colorScheme.outlineVariant
                     ),
                 // color = Color.White
             ) {
@@ -247,7 +246,7 @@ fun DetailMateriScreen(
                                         text = {
                                             Text(
                                                 text = "${index + 1}. ${p.judul}",
-                                                color = if (index == currentPageIndex) Color.Black else Color.Gray,
+                                                color = if (index == currentPageIndex) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
                                                 fontWeight = if (index == currentPageIndex) FontWeight.Bold else FontWeight.Normal
                                             )
                                         },
@@ -351,7 +350,7 @@ fun DetailMateriScreen(
                         .fillMaxWidth()
                         .border(
                             width = 1.dp,
-                            color = Color.Gray,
+                            color = MaterialTheme.colorScheme.outline,
                             shape = RoundedCornerShape(size = 8.dp)
                         )
                         // .background(color = Color(0xFFF9F9F9), shape = RoundedCornerShape(8.dp))
@@ -377,7 +376,7 @@ fun DetailMateriScreen(
                         .fillMaxWidth()
                         .border(
                             width = 1.dp,
-                            color = Color.Black,
+                            color = MaterialTheme.colorScheme.outline,
                             shape = RoundedCornerShape(size = 8.dp)
                         )
                         // .background(color = Color.White, shape = RoundedCornerShape(8.dp))

@@ -25,6 +25,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.content.edit
 import androidx.navigation.NavController
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -35,6 +36,7 @@ import com.example.myapp_learnhtml.ui.screens.DetailPraktikScreen
 import com.example.myapp_learnhtml.ui.screens.HasilLatihanScreen
 import com.example.myapp_learnhtml.ui.screens.HomeScreen
 import com.example.myapp_learnhtml.ui.screens.LatihanScreen
+import com.example.myapp_learnhtml.ui.screens.MateriBelajar
 import com.example.myapp_learnhtml.ui.screens.PraktikScreen
 import com.example.myapp_learnhtml.ui.screens.ProfilScreen
 
@@ -107,7 +109,7 @@ fun NavigationBar(navController: NavController) {
                 selected = currentRoute == screen.route,
                 onClick = {
                     navController.navigate(route = screen.route) {
-                        popUpTo(navController.graph.startDestinationId) {
+                        popUpTo(navController.graph.findStartDestination().id) {
                             saveState = true
                         }
                         launchSingleTop = true
@@ -142,7 +144,7 @@ fun MainScreen() {
     }
 
     // Tentukan rute awal: jika nama sudah ada, langsung ke Dashboard (Home)
-    val startDestination = remember {
+    val startDestination = remember(userName) {
         if (userName.isBlank()) ONBOARDING_ROUTE else Screen.Home.route
     }
 
@@ -222,7 +224,9 @@ fun MainScreen() {
                     navController = navController
                 )
             }
-            composable(route = Screen.Profil.route) { ProfilScreen() }
+            composable(route = Screen.Profil.route) {
+                ProfilScreen(userName = userName.ifBlank { "Pengguna" })
+            }
         }
     }
 }

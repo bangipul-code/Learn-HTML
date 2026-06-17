@@ -1,4 +1,4 @@
-package com.example.myapp_learnhtml
+package com.example.myapp_learnhtml.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -38,6 +38,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.myapp_learnhtml.data.model.MateriItem
 import com.example.myapp_learnhtml.ui.viewmodel.MateriViewModel
 
@@ -356,6 +357,6 @@ private fun itemStatus(item: MateriItem): String {
 @Preview(showBackground = true)
 @Composable
 fun MateriBelajarPreview() {
-    val navController = androidx.navigation.compose.rememberNavController()
+    val navController = rememberNavController()
     MateriBelajar(navController = navController)
 }

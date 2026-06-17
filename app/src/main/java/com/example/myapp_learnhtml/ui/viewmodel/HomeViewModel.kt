@@ -49,7 +49,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             completedMateri = completedMateri,
             completedLatihan = completedLatihan,
             completedPraktik = completedPraktik,
-            totalTopics = 10,
+            totalTopics = materiItemsStatic.size,
             nextMateriTitle = nextMateriTitle
         )
     }.stateIn(

@@ -3,6 +3,20 @@ package com.example.myapp_learnhtml.data.local
 import com.example.myapp_learnhtml.data.model.MateriPage
 import com.example.myapp_learnhtml.data.model.MateriTopic
 
+/*
+    DAFTAR HALAMAN
+    1. Pengenalan HTML
+    2. Struktur Dokumen
+    3. Heading dan Paragraf
+    4. Link dan Navigasi
+    5. Gambar dan Atribut
+    6. List dan Tabel
+    7. Form Dasar
+    8. Semantic HTML
+    9. Media HTML
+    10. Mini Project
+*/
+
 object SampleMateriData {
 
     val topics = listOf(
@@ -14,7 +28,9 @@ object SampleMateriData {
     )
 
     val pages = listOf(
-        MateriPage( // Pengenalan HTML
+
+        // 1. Pengenalan HTML
+        MateriPage(
             id = 0, topicId = 0, pageOrder = 0,
             judul = "Apa itu HTML?",
             deskripsi = "HTML (HyperText Markup Language) adalah bahasa standar untuk membuat halaman web. HTML menyusun struktur halaman web, bertindak sebagai 'kerangka dasar' sebelum dipercantik dengan gaya (styling).",
@@ -60,7 +76,9 @@ object SampleMateriData {
             glosariumJson = """[{"istilah":"Browser","definisi":"Aplikasi pembaca halaman web (seperti Chrome, Firefox, Safari)."}]"""
         ),
 
-        MateriPage( // Struktur Dokumen
+
+        // 2. Struktur Dokumen
+        MateriPage(
             id = 10, topicId = 1, pageOrder = 0,
             judul = "Deklarasi DOCTYPE",
             deskripsi = "Deklarasi <!DOCTYPE html> ditulis di baris paling atas dokumen HTML untuk memberi tahu browser bahwa kita menggunakan HTML versi terbaru (HTML5).",
@@ -69,7 +87,10 @@ object SampleMateriData {
                 <!DOCTYPE html>
                 <html></html>
             """.trimIndent(),
-            hasilDiWeb = "(Halaman kosong) - DOCTYPE tidak memicu tampilan visual apa pun.",
+            hasilDiWeb = """
+                (Halaman kosong)
+                - `<!DOCTYPE>` tidak memicu tampilan visual apa pun.
+            """.trimIndent(),
             glosariumJson = """[{"istilah":"HTML5","definisi":"Standar versi HTML modern yang paling banyak digunakan saat ini."}]"""
         ),
 
@@ -87,6 +108,10 @@ object SampleMateriData {
                 <head>
                     <title>Belajar HTML</title>
                 </head>
+                <body>
+                    (Halaman kosong)
+                    - `<head>` dan `<title>` juga tidak memicu tampilan visual apa pun.
+                </body>
                 """.trimIndent(),
             glosariumJson = """[{"istilah":"Metadata","definisi":"Informasi terstruktur yang mendeskripsikan informasi lainnya."}]"""
         ),
@@ -109,7 +134,9 @@ object SampleMateriData {
             glosariumJson = """[{"istilah":"Konten Visual","definisi":"Semua bagian halaman web yang dapat dilihat langsung oleh pengguna."}]"""
         ),
 
-        MateriPage( // Heading dan Paragraf
+
+        // 3. Heading dan Paragraf
+        MateriPage(
             id = 20, topicId = 2, pageOrder = 0,
             judul = "Heading (h1 - h6)",
             deskripsi = "Heading digunakan untuk membuat judul utama dan subjudul. Ada enam tingkatan, dari <h1> (terbesar & terpenting) hingga <h6> (terkecil).",
@@ -134,7 +161,10 @@ object SampleMateriData {
                 <p>Paragraf satu.</p>
                 <p>Paragraf dua.</p>
             """.trimIndent(),
-            hasilDiWeb = "<p>Paragraf satu.</p> <p>Paragraf dua.</p>",
+            hasilDiWeb = """
+                <p>Paragraf satu.</p>
+                <p>Paragraf dua.</p>
+            """.trimIndent(),
             glosariumJson = """[{"istilah":"Margin","definisi":"Jarak kosong di luar batas/border elemen."}]"""
         ),
 
@@ -143,12 +173,22 @@ object SampleMateriData {
             judul = "Break Line (<br>) & Horizontal Rule (<hr>)",
             deskripsi = "Tag <br> digunakan untuk pindah baris tanpa membuat paragraf baru. Tag <hr> digunakan untuk membuat garis horizontal pembatas. Kedua tag ini tidak memiliki tag penutup (tag mandiri).",
             analogi = "Analogi: <br> seperti menekan tombol Enter pada keyboard ketik, sedangkan <hr> seperti menggarisbawahi kertas pembatas bab.",
-            contohKode = "Baris Satu <br> Baris Dua <hr>",
-            hasilDiWeb = "Baris Satu <br> Baris Dua <hr> ",
+            contohKode = """
+                Baris Satu <br> 
+                Baris Dua
+                <hr>
+            """.trimIndent(),
+            hasilDiWeb = """
+                Baris Satu <br> 
+                Baris Dua
+                <hr>
+            """.trimIndent(),
             glosariumJson = """[{"istilah":"Void Elements","definisi":"Tag yang tidak memiliki konten penutup, hanya berisi deklarasi tunggal."}]"""
         ),
 
-        MateriPage( // Link dan Navigasi
+
+        // 4. Link dan Navigasi
+        MateriPage(
             id = 30, topicId = 3, pageOrder = 0,
             judul = "Tag Anchor (<a>)",
             deskripsi = "Navigasi antarhalaman web menggunakan tag anchor <a> (anchor). Teks di antara tag pembuka dan penutup akan menjadi tautan yang dapat diklik.",
@@ -186,7 +226,9 @@ object SampleMateriData {
             glosariumJson = """[{"istilah":"_blank","definisi":"Nilai khusus (keyword) yang memerintahkan browser untuk membuat konteks penjelajahan baru."}]"""
         ),
 
-        MateriPage( // Gambar dan Atribut
+
+        // 5. Gambar dan Atribut
+        MateriPage(
             id = 40, topicId = 4, pageOrder = 0,
             judul = "Tag Gambar (<img>)",
             deskripsi = "Tag <img> digunakan untuk menampilkan gambar. Tag ini merupakan tag mandiri (tidak memiliki pasangan tag penutup).",
@@ -223,7 +265,7 @@ object SampleMateriData {
                 <img src="kucing.jpg" width="200" height="150" alt="Foto Kucing">
             """.trimIndent(),
             hasilDiWeb = """
-                <img src width='200' height='150'='https://plus.unsplash.com/premium_photo-1667030474693-6d0632f97029?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'>
+                <img src width="200" height="150"="https://plus.unsplash.com/premium_photo-1667030474693-6d0632f97029?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
             """.trimIndent(),
             glosariumJson = """[{"istilah":"Piksel","definisi":"Unsur gambar atau representasi titik terkecil dalam gambar grafis."}]"""
         )

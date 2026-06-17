@@ -24,11 +24,16 @@ import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import com.example.myapp_learnhtml.ui.viewmodel.HomeViewModel
 
 private const val MATERI_ROUTE = "materi"
 private const val PRAKTIK_ROUTE = "praktik"
@@ -38,9 +43,11 @@ private const val LATIHAN_ROUTE = "latihan"
 fun HomeScreen(
     userName: String = "Fauzi Taufiq",
     userAvatar: String = "",
-    navController: NavHostController
+    navController: NavHostController,
+    viewModel: HomeViewModel = viewModel()
 ) {
     val firstName = userName.ifBlank { "Teman belajar" }.substringBefore(" ")
+    val uiState by viewModel.uiState.collectAsState()
 
     Surface(modifier = Modifier.fillMaxSize()) {
         LazyColumn(
@@ -58,9 +65,9 @@ fun HomeScreen(
 
             item {
                 LearningStatusCard(
-                    completedLessons = 7,
-                    totalLessons = 20,
-                    nextLesson = "Struktur HTML dan tag dasar"
+                    completedLessons = uiState.totalCompleted,
+                    totalLessons = uiState.totalTopics * 3,
+                    nextLesson = uiState.nextMateriTitle
                 )
             }
 
@@ -85,12 +92,12 @@ fun HomeScreen(
                 )
             }
 
-            item {
+            /* item {
                 HelpAndRecoveryCard(
                     onOpenPractice = { navController.navigateSingleTop(PRAKTIK_ROUTE) },
                     onOpenQuiz = { navController.navigateSingleTop(LATIHAN_ROUTE) }
                 )
-            }
+            } */
 
             item {
                 Spacer(modifier = Modifier.height(8.dp))
@@ -181,7 +188,7 @@ private fun LearningStatusCard(
                         fontWeight = FontWeight.Bold
                     )
                     Text(
-                        text = "$completedLessons dari $totalLessons materi selesai",
+                        text = "$completedLessons dari $totalLessons tugas selesai",
                         style = MaterialTheme.typography.bodySmall
                     )
                 }
@@ -327,7 +334,7 @@ private fun LearningPathRow(
     }
 }
 
-@Composable
+/* @Composable
 private fun HelpAndRecoveryCard(
     onOpenPractice: () -> Unit,
     onOpenQuiz: () -> Unit
@@ -350,12 +357,12 @@ private fun HelpAndRecoveryCard(
                 text = "Kalau belum yakin, coba praktik singkat atau kerjakan latihan untuk mengecek pemahaman.",
                 style = MaterialTheme.typography.bodyMedium
             )
-
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 OutlinedButton(
+                    enabled = false,
                     onClick = onOpenPractice,
                     modifier = Modifier.weight(1f),
                     shape = RoundedCornerShape(size = 16.dp)
@@ -373,10 +380,13 @@ private fun HelpAndRecoveryCard(
             }
         }
     }
-}
+} */
 
 private fun NavHostController.navigateSingleTop(route: String) {
     navigate(route) {
+        popUpTo(graph.findStartDestination().id) {
+            saveState = true
+        }
         launchSingleTop = true
         restoreState = true
     }

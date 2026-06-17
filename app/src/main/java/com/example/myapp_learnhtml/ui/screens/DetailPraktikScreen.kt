@@ -40,7 +40,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -94,7 +93,7 @@ fun DetailPraktikScreen(
                 },
                 modifier = Modifier.border(
                     width = 1.dp,
-                    color = Color.Black
+                    color = MaterialTheme.colorScheme.outlineVariant
                 )
             )
         },
@@ -104,7 +103,7 @@ fun DetailPraktikScreen(
                     .fillMaxWidth()
                     .border(
                         width = 1.dp,
-                        color = Color.Black
+                        color = MaterialTheme.colorScheme.outlineVariant
                     )
             ) {
                 Row(
@@ -268,7 +267,7 @@ fun DetailPraktikScreen(
                         textStyle = TextStyle(
                             fontFamily = FontFamily.Monospace,
                             fontSize = 13.sp,
-                            color = Color.Black
+                            color = MaterialTheme.colorScheme.onSurface
                         ),
                         cursorBrush = SolidColor(MaterialTheme.colorScheme.primary)
                     )
@@ -297,7 +296,7 @@ fun DetailPraktikScreen(
                             .fillMaxWidth()
                             .border(
                                 width = 1.dp,
-                                color = Color.Black,
+                                color = MaterialTheme.colorScheme.outline,
                                 shape = RoundedCornerShape(size = 8.dp)
                             )
                             .padding(all = 12.dp)

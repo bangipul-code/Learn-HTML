@@ -116,7 +116,7 @@ private fun ProgressSummary(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Column {
+                Column(modifier = Modifier.weight(1f)) {
                     Text(
                         text = "Progres latihan",
                         style = MaterialTheme.typography.titleMedium,
@@ -127,6 +127,7 @@ private fun ProgressSummary(
                         style = MaterialTheme.typography.bodyMedium
                     )
                 }
+                Spacer(modifier = Modifier.width(16.dp))
                 Text(
                     text = "${(progress * 100).toInt()}%",
                     style = MaterialTheme.typography.titleLarge,
@@ -157,9 +158,12 @@ private fun SkorSummary(averageScore: Int) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            Column(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
                 Text(
-                    text = "Rata-rata skor",
+                    text = "Skor rata-rata",
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.SemiBold
                 )
@@ -168,6 +172,7 @@ private fun SkorSummary(averageScore: Int) {
                     style = MaterialTheme.typography.bodyMedium
                 )
             }
+            Spacer(modifier = Modifier.width(16.dp))
             Text(
                 text = "$averageScore",
                 style = MaterialTheme.typography.headlineMedium,
