@@ -34,4 +34,17 @@ class Converters {
         }
         return list
     }
+
+    @TypeConverter
+    fun fromStringList(value: List<String>): String {
+        val jsonArray = JSONArray()
+        value.forEach { jsonArray.put(it) }
+        return jsonArray.toString()
+    }
+
+    @TypeConverter
+    fun toStringList(value: String): List<String> {
+        val jsonArray = JSONArray(value)
+        return List(jsonArray.length()) { index -> jsonArray.getString(index) }
+    }
 }

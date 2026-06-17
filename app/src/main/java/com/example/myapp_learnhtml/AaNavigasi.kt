@@ -32,8 +32,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.myapp_learnhtml.ui.screens.DetailLatihanScreen
 import com.example.myapp_learnhtml.ui.screens.DetailMateriScreen
+import com.example.myapp_learnhtml.ui.screens.HasilLatihanScreen
 import com.example.myapp_learnhtml.ui.screens.HomeScreen
+import com.example.myapp_learnhtml.ui.screens.LatihanScreen
 import com.example.myapp_learnhtml.ui.screens.ProfilScreen
 
 private const val ONBOARDING_ROUTE = "onboarding"
@@ -68,20 +71,24 @@ sealed class Screen(
         route = "latihan"
     )
 
+    object DetailLatihan : Screen(
+        title = "Detail Latihan",
+        icon = Icons.Default.LaptopChromebook,
+        route = "detail_latihan/{topicIndex}"
+    )
+
+    object HasilLatihan : Screen(
+        title = "Hasil Latihan",
+        icon = Icons.Default.LaptopChromebook,
+        route = "hasil_latihan/{topicIndex}"
+    )
+
     object Profil : Screen(
         title = "Profil",
         icon = Icons.Default.Person,
         route = "profil"
     )
 }
-
-// // === HALAMAN MATERI === \\
-// @Composable
-// fun MateriScreen() {
-//     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-//         Text(text = "Halaman Materi")
-//     }
-// }
 
 // === HALAMAN PRAKTIK === \\
 @Composable
@@ -90,22 +97,6 @@ fun PraktikScreen() {
         Text(text = "Halaman Praktik")
     }
 }
-
-// === HALAMAN LATIHAN === \\
-@Composable
-fun LatihanScreen() {
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text(text = "Halaman Latihan")
-    }
-}
-
-// === HALAMAN PROFIL === \\
-// @Composable
-// fun ProfilScreen() {
-//     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-//         Text(text = "Halaman Profil")
-//     }
-// }
 
 // ========== MAIN SCREEN ========== \\
 
@@ -119,7 +110,7 @@ fun NavigationBar(navController: NavController) {
     NavigationBar {
         screens.forEach { screen ->
             NavigationBarItem(
-                enabled = screen.title != "Praktik" && screen.title != "Latihan",
+                enabled = screen.title != "Praktik",
                 selected = currentRoute == screen.route,
                 onClick = {
                     navController.navigate(route = screen.route) {
@@ -213,7 +204,23 @@ fun MainScreen() {
                 )
             }
             composable(route = Screen.Praktik.route) { PraktikScreen() }
-            composable(route = Screen.Latihan.route) { LatihanScreen() }
+            composable(route = Screen.Latihan.route) { LatihanScreen(navController = navController) }
+            composable(route = Screen.DetailLatihan.route) { backStackEntry ->
+                val topicIndexStr = backStackEntry.arguments?.getString("topicIndex") ?: "0"
+                val topicIndex = topicIndexStr.toIntOrNull() ?: 0
+                DetailLatihanScreen(
+                    topicIndex = topicIndex,
+                    navController = navController
+                )
+            }
+            composable(route = Screen.HasilLatihan.route) { backStackEntry ->
+                val topicIndexStr = backStackEntry.arguments?.getString("topicIndex") ?: "0"
+                val topicIndex = topicIndexStr.toIntOrNull() ?: 0
+                HasilLatihanScreen(
+                    topicIndex = topicIndex,
+                    navController = navController
+                )
+            }
             composable(route = Screen.Profil.route) { ProfilScreen() }
         }
     }

@@ -8,16 +8,25 @@ import androidx.room.TypeConverters
 import com.example.myapp_learnhtml.data.model.MateriPage
 import com.example.myapp_learnhtml.data.model.MateriProgress
 import com.example.myapp_learnhtml.data.model.MateriTopic
+import com.example.myapp_learnhtml.data.model.LatihanProgress
+import com.example.myapp_learnhtml.data.model.LatihanQuestion
 
 @Database(
-    entities = [MateriTopic::class, MateriPage::class, MateriProgress::class],
-    version = 2,
+    entities = [
+        MateriTopic::class,
+        MateriPage::class,
+        MateriProgress::class,
+        LatihanQuestion::class,
+        LatihanProgress::class
+    ],
+    version = 3,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
 abstract class MateriDatabase : RoomDatabase() {
 
     abstract fun materiDao(): MateriDao
+    abstract fun latihanDao(): LatihanDao
 
     companion object {
         @Volatile
