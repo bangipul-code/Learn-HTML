@@ -356,7 +356,6 @@ private fun HelpAndRecoveryCard(
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 OutlinedButton(
-                    enabled = false,
                     onClick = onOpenPractice,
                     modifier = Modifier.weight(1f),
                     shape = RoundedCornerShape(size = 16.dp)

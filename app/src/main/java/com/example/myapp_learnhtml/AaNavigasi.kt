@@ -1,8 +1,6 @@
 package com.example.myapp_learnhtml
 
 import android.content.Context
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Assignment
@@ -21,7 +19,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
@@ -34,9 +31,11 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.myapp_learnhtml.ui.screens.DetailLatihanScreen
 import com.example.myapp_learnhtml.ui.screens.DetailMateriScreen
+import com.example.myapp_learnhtml.ui.screens.DetailPraktikScreen
 import com.example.myapp_learnhtml.ui.screens.HasilLatihanScreen
 import com.example.myapp_learnhtml.ui.screens.HomeScreen
 import com.example.myapp_learnhtml.ui.screens.LatihanScreen
+import com.example.myapp_learnhtml.ui.screens.PraktikScreen
 import com.example.myapp_learnhtml.ui.screens.ProfilScreen
 
 private const val ONBOARDING_ROUTE = "onboarding"
@@ -91,12 +90,7 @@ sealed class Screen(
 }
 
 // === HALAMAN PRAKTIK === \\
-@Composable
-fun PraktikScreen() {
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text(text = "Halaman Praktik")
-    }
-}
+// PraktikScreen is now in ui/screens/PraktikScreen.kt
 
 // ========== MAIN SCREEN ========== \\
 
@@ -110,7 +104,6 @@ fun NavigationBar(navController: NavController) {
     NavigationBar {
         screens.forEach { screen ->
             NavigationBarItem(
-                enabled = screen.title != "Praktik",
                 selected = currentRoute == screen.route,
                 onClick = {
                     navController.navigate(route = screen.route) {
@@ -203,7 +196,15 @@ fun MainScreen() {
                     navController = navController
                 )
             }
-            composable(route = Screen.Praktik.route) { PraktikScreen() }
+            composable(route = Screen.Praktik.route) { PraktikScreen(navController = navController) }
+            composable(route = "detail_praktik/{index}") { backStackEntry ->
+                val indexStr = backStackEntry.arguments?.getString("index") ?: "0"
+                val index = indexStr.toIntOrNull() ?: 0
+                DetailPraktikScreen(
+                    topicIndex = index,
+                    navController = navController
+                )
+            }
             composable(route = Screen.Latihan.route) { LatihanScreen(navController = navController) }
             composable(route = Screen.DetailLatihan.route) { backStackEntry ->
                 val topicIndexStr = backStackEntry.arguments?.getString("topicIndex") ?: "0"

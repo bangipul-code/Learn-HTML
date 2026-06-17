@@ -10,6 +10,7 @@ import com.example.myapp_learnhtml.data.model.MateriProgress
 import com.example.myapp_learnhtml.data.model.MateriTopic
 import com.example.myapp_learnhtml.data.model.LatihanProgress
 import com.example.myapp_learnhtml.data.model.LatihanQuestion
+import com.example.myapp_learnhtml.data.model.PraktikProgress
 
 @Database(
     entities = [
@@ -17,9 +18,10 @@ import com.example.myapp_learnhtml.data.model.LatihanQuestion
         MateriPage::class,
         MateriProgress::class,
         LatihanQuestion::class,
-        LatihanProgress::class
+        LatihanProgress::class,
+        PraktikProgress::class
     ],
-    version = 3,
+    version = 4,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
@@ -27,6 +29,7 @@ abstract class MateriDatabase : RoomDatabase() {
 
     abstract fun materiDao(): MateriDao
     abstract fun latihanDao(): LatihanDao
+    abstract fun praktikDao(): PraktikDao
 
     companion object {
         @Volatile

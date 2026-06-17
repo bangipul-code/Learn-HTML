@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapp_learnhtml.data.local.Converters
 import com.example.myapp_learnhtml.data.local.MateriDatabase
-import com.example.myapp_learnhtml.data.local.SampleData
+import com.example.myapp_learnhtml.data.local.SampleMateriData
 import com.example.myapp_learnhtml.data.model.GlosariumItem
 import com.example.myapp_learnhtml.data.model.MateriPage
 import com.example.myapp_learnhtml.data.model.MateriTopic
@@ -67,10 +67,10 @@ class DetailMateriViewModel(application: Application) : AndroidViewModel(applica
     }
 
     private suspend fun seedDatabase() {
-        for (topic in SampleData.topics) {
+        for (topic in SampleMateriData.topics) {
             dao.insertTopic(topic)
         }
-        dao.insertPages(SampleData.pages)
+        dao.insertPages(SampleMateriData.pages)
     }
 
     fun goToNextPage() {
