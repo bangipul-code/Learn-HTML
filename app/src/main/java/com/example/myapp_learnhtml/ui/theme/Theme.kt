@@ -19,28 +19,21 @@ private val DarkColorScheme = darkColorScheme(
 private val LightColorScheme = lightColorScheme(
     primary = Purple40,
     secondary = PurpleGrey40,
-    tertiary = Pink40
+    tertiary = Pink40,
 
-    // primary = Color(0xFFE3FDFD),
-    // secondary = Color(0xFFCBF1F5),
-    // tertiary = Color(0xFFA6E3E9)
-
-    // // Other default colors to override
-    // background = Color(0xFFFFFBFE),
-    // surface = Color(0xFFFFFBFE),
+    // background = Color(0xFFE3FDFD),
+    // surface = Color(0xFFCBF1F5),    // Using the secondary-like color for surface to make cards stand out
     // onPrimary = Color.White,
     // onSecondary = Color.White,
     // onTertiary = Color.White,
     // onBackground = Color(0xFF1C1B1F),
     // onSurface = Color(0xFF1C1B1F),
-
 )
 
 @Composable
 fun Myapp_learnHTMLTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false, // Set to false to ensure our custom colors are used
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {

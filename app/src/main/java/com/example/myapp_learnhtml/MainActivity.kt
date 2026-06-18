@@ -4,17 +4,24 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Surface
+import androidx.compose.ui.Modifier
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.myapp_learnhtml.ui.theme.Myapp_learnHTMLTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
 
-            Myapp_learnHTMLTheme { MainScreen() }
+            Myapp_learnHTMLTheme {
+                Surface(Modifier.fillMaxSize()) {
+                    MainScreen()
+                }
+            }
 
             /* val navController = rememberNavController()
             var userName by rememberSaveable { mutableStateOf("") }

@@ -5,11 +5,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.example.myapp_learnhtml.data.model.LatihanProgress
+import com.example.myapp_learnhtml.data.model.LatihanQuestion
 import com.example.myapp_learnhtml.data.model.MateriPage
 import com.example.myapp_learnhtml.data.model.MateriProgress
 import com.example.myapp_learnhtml.data.model.MateriTopic
-import com.example.myapp_learnhtml.data.model.LatihanProgress
-import com.example.myapp_learnhtml.data.model.LatihanQuestion
 import com.example.myapp_learnhtml.data.model.PraktikProgress
 
 @Database(
@@ -41,7 +41,7 @@ abstract class MateriDatabase : RoomDatabase() {
                     context.applicationContext,
                     MateriDatabase::class.java,
                     "materi_database"
-                ).fallbackToDestructiveMigration().build().also { INSTANCE = it }
+                ).fallbackToDestructiveMigration(dropAllTables = true).build().also { INSTANCE = it }
             }
         }
     }

@@ -89,7 +89,7 @@ object SampleMateriData {
             """.trimIndent(),
             hasilDiWeb = """
                 (Halaman kosong)
-                - `<!DOCTYPE>` tidak memicu tampilan visual apa pun.
+                - `!DOCTYPE` tidak memicu tampilan visual apa pun.
             """.trimIndent(),
             glosariumJson = """[{"istilah":"HTML5","definisi":"Standar versi HTML modern yang paling banyak digunakan saat ini."}]"""
         ),
@@ -110,7 +110,7 @@ object SampleMateriData {
                 </head>
                 <body>
                     (Halaman kosong)
-                    - `<head>` dan `<title>` juga tidak memicu tampilan visual apa pun.
+                    - head dan title juga tidak memicu tampilan visual apa pun.
                 </body>
                 """.trimIndent(),
             glosariumJson = """[{"istilah":"Metadata","definisi":"Informasi terstruktur yang mendeskripsikan informasi lainnya."}]"""

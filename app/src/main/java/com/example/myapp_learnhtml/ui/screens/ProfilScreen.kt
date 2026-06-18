@@ -60,62 +60,60 @@ fun ProfilContent(
     userAvatar: String,
     uiState: HomeUiState
 ) {
-    Surface(modifier = Modifier.fillMaxSize()) {
-        LazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(horizontal = 20.dp, vertical = 24.dp),
-            verticalArrangement = Arrangement.spacedBy(20.dp)
-        ) {
-            item {
-                ProfileHeader(
-                    userName = userName,
-                    userAvatar = userAvatar
-                )
-            }
+    LazyColumn(
+        modifier = Modifier.fillMaxSize(),
+        contentPadding = PaddingValues(horizontal = 20.dp, vertical = 24.dp),
+        verticalArrangement = Arrangement.spacedBy(20.dp)
+    ) {
+        item {
+            ProfileHeader(
+                userName = userName,
+                userAvatar = userAvatar
+            )
+        }
 
-            item {
-                ProgressSummaryCard(
-                    completedMateri = uiState.completedMateri,
-                    completedLatihan = uiState.completedLatihan,
-                    completedPraktik = uiState.completedPraktik,
-                    totalTopics = uiState.totalTopics
-                )
-            }
+        item {
+            ProgressSummaryCard(
+                completedMateri = uiState.completedMateri,
+                completedLatihan = uiState.completedLatihan,
+                completedPraktik = uiState.completedPraktik,
+                totalTopics = uiState.totalTopics
+            )
+        }
 
-            item {
-                SectionTitle(title = "Statistik Belajar")
-            }
+        item {
+            SectionTitle(title = "Statistik Belajar")
+        }
 
-            item {
-                StatRow(
-                    label = "Materi Selesai",
-                    value = "${uiState.completedMateri} / ${uiState.totalTopics}",
-                    icon = Icons.Default.Book,
-                    progress = if (uiState.totalTopics > 0) uiState.completedMateri.toFloat() / uiState.totalTopics else 0f
-                )
-            }
+        item {
+            StatRow(
+                label = "Materi Selesai",
+                value = "${uiState.completedMateri} / ${uiState.totalTopics}",
+                icon = Icons.Default.Book,
+                progress = if (uiState.totalTopics > 0) uiState.completedMateri.toFloat() / uiState.totalTopics else 0f
+            )
+        }
 
-            item {
-                StatRow(
-                    label = "Praktik Selesai",
-                    value = "${uiState.completedPraktik} / ${uiState.totalTopics}",
-                    icon = Icons.Default.Code,
-                    progress = if (uiState.totalTopics > 0) uiState.completedPraktik.toFloat() / uiState.totalTopics else 0f
-                )
-            }
+        item {
+            StatRow(
+                label = "Praktik Selesai",
+                value = "${uiState.completedPraktik} / ${uiState.totalTopics}",
+                icon = Icons.Default.Code,
+                progress = if (uiState.totalTopics > 0) uiState.completedPraktik.toFloat() / uiState.totalTopics else 0f
+            )
+        }
 
-            item {
-                StatRow(
-                    label = "Latihan Selesai",
-                    value = "${uiState.completedLatihan} / ${uiState.totalTopics}",
-                    icon = Icons.Default.EmojiEvents,
-                    progress = if (uiState.totalTopics > 0) uiState.completedLatihan.toFloat() / uiState.totalTopics else 0f
-                )
-            }
+        item {
+            StatRow(
+                label = "Latihan Selesai",
+                value = "${uiState.completedLatihan} / ${uiState.totalTopics}",
+                icon = Icons.Default.EmojiEvents,
+                progress = if (uiState.totalTopics > 0) uiState.completedLatihan.toFloat() / uiState.totalTopics else 0f
+            )
+        }
 
-            item {
-                Spacer(modifier = Modifier.height(16.dp))
-            }
+        item {
+            Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }
