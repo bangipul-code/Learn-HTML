@@ -4,10 +4,15 @@ import android.content.Context
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Assignment
+import androidx.compose.material.icons.automirrored.outlined.Assignment
 import androidx.compose.material.icons.filled.Book
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.LaptopChromebook
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.outlined.Book
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.LaptopChromebook
+import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -45,48 +50,56 @@ private const val ONBOARDING_ROUTE = "onboarding"
 // === DEKLARASI RUTE === \\
 sealed class Screen(
     val title: String,
-    val icon: ImageVector,
+    val selectedIcon: ImageVector,
+    val unselectedIcon: ImageVector,
     val route: String,
 ) {
     object Home : Screen(
         title = "Beranda",
-        icon = Icons.Default.Home,
+        selectedIcon = Icons.Filled.Home,
+        unselectedIcon = Icons.Outlined.Home,
         route = "home"
     )
 
     object Materi : Screen(
         title = "Materi",
-        icon = Icons.Default.Book,
+        selectedIcon = Icons.Filled.Book,
+        unselectedIcon = Icons.Outlined.Book,
         route = "materi"
     )
 
     object Praktik : Screen(
         title = "Praktik",
-        icon = Icons.AutoMirrored.Filled.Assignment,
+        selectedIcon = Icons.AutoMirrored.Filled.Assignment,
+        unselectedIcon = Icons.AutoMirrored.Outlined.Assignment,
         route = "praktik"
     )
 
     object Latihan : Screen(
         title = "Latihan",
-        icon = Icons.Default.LaptopChromebook,
+        selectedIcon = Icons.Filled.LaptopChromebook,
+        unselectedIcon = Icons.Outlined.LaptopChromebook,
         route = "latihan"
     )
 
     object DetailLatihan : Screen(
         title = "Detail Latihan",
-        icon = Icons.Default.LaptopChromebook,
+        selectedIcon = Icons.Filled.LaptopChromebook,
+        unselectedIcon = Icons.Outlined.LaptopChromebook,
         route = "detail_latihan/{topicIndex}"
     )
 
     object HasilLatihan : Screen(
         title = "Hasil Latihan",
-        icon = Icons.Default.LaptopChromebook,
+        selectedIcon = Icons.Filled.LaptopChromebook,
+        unselectedIcon = Icons.Outlined.LaptopChromebook,
         route = "hasil_latihan/{topicIndex}"
     )
 
     object Profil : Screen(
         title = "Profil",
-        icon = Icons.Default.Person,
+        selectedIcon = Icons.Filled.Person,
+        unselectedIcon = Icons.Outlined.Person,
         route = "profil"
     )
 }
@@ -105,8 +118,9 @@ fun NavigationBar(navController: NavController) {
 
     NavigationBar {
         screens.forEach { screen ->
+            val isSelected = currentRoute == screen.route
             NavigationBarItem(
-                selected = currentRoute == screen.route,
+                selected = isSelected,
                 onClick = {
                     navController.navigate(route = screen.route) {
                         popUpTo(navController.graph.findStartDestination().id) {
@@ -118,7 +132,7 @@ fun NavigationBar(navController: NavController) {
                 },
                 icon = {
                     Icon(
-                        imageVector = screen.icon,
+                        imageVector = if (isSelected) screen.selectedIcon else screen.unselectedIcon,
                         contentDescription = screen.title
                     )
                 },

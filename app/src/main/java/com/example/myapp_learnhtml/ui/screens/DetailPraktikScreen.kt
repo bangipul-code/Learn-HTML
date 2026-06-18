@@ -5,6 +5,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -257,20 +260,27 @@ fun DetailPraktikScreen(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(size = 8.dp)
                 ) {
-                    BasicTextField(
-                        value = state.kode,
-                        onValueChange = { viewModel.updateKode(it) },
+                    Box(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(200.dp)
-                            .padding(12.dp),
-                        textStyle = TextStyle(
-                            fontFamily = FontFamily.Monospace,
-                            fontSize = 13.sp,
-                            color = MaterialTheme.colorScheme.onSurface
-                        ),
-                        cursorBrush = SolidColor(MaterialTheme.colorScheme.primary)
-                    )
+                            .horizontalScroll(rememberScrollState())
+                    ) {
+                        BasicTextField(
+                            value = state.kode,
+                            onValueChange = { viewModel.updateKode(it) },
+                            modifier = Modifier
+                                .fillMaxHeight()
+                                .padding(12.dp)
+                                .width(IntrinsicSize.Max),
+                            textStyle = TextStyle(
+                                fontFamily = FontFamily.Monospace,
+                                fontSize = 13.sp,
+                                color = MaterialTheme.colorScheme.onSurface
+                            ),
+                            cursorBrush = SolidColor(MaterialTheme.colorScheme.primary)
+                        )
+                    }
                 }
             }
 
